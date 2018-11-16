@@ -1,0 +1,31 @@
+{
+  "name": "ooo-top-line",
+  "version": "0.0.1",
+  "description": "Test task for Node.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "init": "node app/init.js"
+  },
+  "engines": {
+    "node": ">=8.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/woodger/ooo-top-line"
+  },
+  "keywords": [
+    "task"
+  ],
+  "author": {
+    "name": "Stanislav Woodger",
+    "email": "woodger@ya.ru"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-router": "^7.4.0",
+    "mariadb": "^2.0.1-beta",
+    "type-enforcement": "^1.0.12"
+  }
+}
