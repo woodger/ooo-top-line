@@ -21,14 +21,6 @@ describe(`API test server`, () => {
     server.close();
   });
 
-  it(`<OPTIONS> Should always return information about server methods`, (done) => {
-    http.get(`http://127.0.0.1:${port}/books`, { method: 'OPTIONS' }, (res) => {
-      if (res.headers.allow === 'POST, HEAD, GET') {
-        done();
-      }
-    });
-  });
-
   it(`<GET> By default, the book list should return 30 entries`, (done) => {
     http.get(`http://127.0.0.1:${port}/books`, (res) => {
       streamToString(res).then((body) => {
