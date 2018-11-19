@@ -4,7 +4,7 @@ const http = require('http');
 const streamToString = require('stream-to-string')
 const FormData = require('form-data');
 const config = require('../config.json');
-const server = require('..');
+const app = require('..');
 
 
 
@@ -13,12 +13,12 @@ describe(`API test server`, () => {
   const cwd = process.cwd();
 
   after(async () => {
-    let set = await server;
+    let {server, context} = await app;
 
-    await set.app.context.db.close();
-    await set.pool.end();
+    await context.db.close();
+    await context.db.pool.end();
 
-    set.server.close();
+    server.close();
   });
 
   it(`<OPTIONS> Should always return information about server methods`, (done) => {

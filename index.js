@@ -7,18 +7,15 @@ const server = async () => {
   let app = new Koa();
 
   let server = app.listen(config.server.port);
-  let pool = mariadb.connect(config.mariadb);
-  
-  app.context.db = await pool.getConnection();
+  let db = await mariadb.connect(config.mariadb);
+
+  app.context.db = db;
+  app.server = server;
 
   app.use(router.routes());
   app.use(router.allowedMethods());
 
-  return {
-    pool,
-    server,
-    app
-  };
+  return app;
 };
 
 

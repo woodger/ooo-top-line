@@ -13,7 +13,7 @@ const te = new TypeEnforcement({
 });
 
 module.exports = {
-  connect({host = '127.0.0.1', port = 3306, user, passwd = '', db}) {
+  async connect({host = '127.0.0.1', port = 3306, user, passwd = '', db = ''}) {
 
     // https://github.com/woodger/type-enforcement#tevalidateorder-doc-options
     let err = te.validate('#connect()', {
@@ -29,7 +29,7 @@ module.exports = {
     }
 
     // https://mariadb.com/kb/en/library/getting-started-with-the-nodejs-connector/
-    return mariadb.createPool({
+    let pool = mariadb.createPool({
       host,
       port,
       user,
@@ -37,5 +37,11 @@ module.exports = {
       database: db,
       connectionLimit: 5
     });
+
+    let join = await pool.getConnection();
+
+    join.pool = pool;
+
+    return join;
   }
 }

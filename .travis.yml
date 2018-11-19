@@ -1,7 +1,9 @@
 addons:
   mariadb: '10.0'
 before_install:
-  - mysql -e 'CREATE DATABASE example;'
+  - mysql -e 'CREATE DATABASE test;'
+  - mysql -e 'GRANT ALL PRIVILEGES ON test. * TO travis@localhost;'
+  - mysql -e 'FLUSH PRIVILEGES;'
 language: node_js
 node_js:
  - "8"
