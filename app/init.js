@@ -17,10 +17,6 @@ const config = require('../config');
     ");"
   );
 
-  await db.query(
-    "CREATE INDEX PIndex ON `books` (`title`, `image`);"
-  );
-
   let [count] = await db.query("SELECT COUNT(`id`) FROM `books`");
 
   if (count['COUNT(`id`)'] > 0) {
