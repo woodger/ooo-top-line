@@ -27,7 +27,7 @@ const config = require('../config');
     return;
   }
 
-  for (let i = 0; i < 1e5; i++) {
+  for (let i = 0; i < 1e2; i++) {
     // return a random integer between 0 and books.length
 
     let index = Math.floor(Math.random() * dataset.length);
