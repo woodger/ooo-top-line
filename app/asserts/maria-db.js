@@ -13,7 +13,7 @@ const te = new TypeEnforcement({
 });
 
 module.exports = {
-  connect({host = '127.0.0.1', port = 3306, user, passwd, db}) {
+  connect({host = '127.0.0.1', port = 3306, user, passwd = '', db}) {
 
     // https://github.com/woodger/type-enforcement#tevalidateorder-doc-options
     let err = te.validate('#connect()', {

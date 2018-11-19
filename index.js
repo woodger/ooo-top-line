@@ -8,7 +8,7 @@ const server = async () => {
 
   let server = app.listen(config.server.port);
   let pool = mariadb.connect(config.mariadb);
-
+  
   app.context.db = await pool.getConnection();
 
   app.use(router.routes());

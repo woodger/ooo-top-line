@@ -1,5 +1,7 @@
 addons:
   mariadb: '10.0'
+before_install:
+  - mysql -e 'CREATE DATABASE example;'
 language: node_js
 node_js:
  - "8"
