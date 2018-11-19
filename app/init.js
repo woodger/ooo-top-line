@@ -1,42 +1,46 @@
 const mariadb = require('./asserts/maria-db');
-const books = require('../statics/books-dataset');
-const apptrc = require('../apptrc');
+const dataset = require('../statics/books-dataset');
+const config = require('../config');
 
 (async () => {
-  const db = await mariadb.connect(apptrc.mariadb);
+  const db = await mariadb.connect(config.mariadb);
 
   await db.query(
-    "CREATE DATABASE `example` CHARACTER SET utf8 COLLATE utf8_general_ci;"
-  );
-
-  await db.query("USE `example`;");
-
-  await db.query(
-    "CREATE TABLE `books` (" +
-      "`id` INT (10) NOT NULL AUTO_INCREMENT," +
-      "`title` CHAR (255) NOT NULL," +
+    "CREATE TABLE IF NOT EXISTS `books` (" +
+      "`id` INT UNSIGNED AUTO_INCREMENT," +
+      "`title` TEXT NOT NULL," +
       "`date` DATE NOT NULL," +
-      "`autor` CHAR (255) NOT NULL," +
+      "`author` TEXT NOT NULL," +
       "`description` TEXT NOT NULL," +
-      "`image` CHAR (255) NOT NULL," +
+      "`image` TEXT NOT NULL," +
       "PRIMARY KEY (`id`)" +
     ");"
   );
 
+  await db.query(
+    "CREATE INDEX PIndex ON `books` (`title`, `image`);"
+  );
+
+  let [count] = await db.query("SELECT COUNT(`id`) FROM `books`");
+
+  if (count['COUNT(`id`)'] > 0) {
+    return;
+  }
+
   for (let i = 0; i < 1e5; i++) {
     // return a random integer between 0 and books.length
 
-    let index = Math.floor(Math.random() * books.length);
-    let book = books[index];
-    let {title, date, autor, description, image} = book;
+    let index = Math.floor(Math.random() * dataset.length);
+    let book = dataset[index];
+    let {title, date, author, description, image} = book;
 
     await db.query(
       "INSERT INTO `books`" +
-      "(title, date, autor, description, image)" +
+      "(`title`, `date`, `author`, `description`, `image`)" +
       "VALUES (?, ?, ?, ?, ?);", [
         title,
         date,
-        autor,
+        author,
         description,
         image
       ]

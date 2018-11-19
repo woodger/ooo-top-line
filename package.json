@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "init": "node app/init.js"
+    "init": "node app/init.js",
+    "test": "NODE_ENV=test mocha",
+    "coverage": "NODE_ENV=test nyc --reporter=html mocha"
   },
   "engines": {
     "node": ">=8.12.0"
@@ -24,8 +26,16 @@
   "license": "MIT",
   "dependencies": {
     "koa": "^2.6.2",
+    "koa-body": "^4.0.4",
+    "koa-controllers": "^0.1.6",
     "koa-router": "^7.4.0",
     "mariadb": "^2.0.1-beta",
+    "pwd-fs": "^1.0.4",
     "type-enforcement": "^1.0.12"
+  },
+  "devDependencies": {
+    "form-data": "^2.3.3",
+    "mocha": "^5.2.0",
+    "stream-to-string": "^1.1.0"
   }
 }
