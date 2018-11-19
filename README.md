@@ -13,7 +13,9 @@
 
 ## Http-сервер API Koa2 REST
 
+[![Build Status](https://travis-ci.com/woodger/ooo-top-line.svg?branch=master)](https://travis-ci.com/woodger/ooo-top-line)
 
+[![Coverage Status](https://coveralls.io/repos/github/woodger/ooo-top-line/badge.svg?branch=master)](https://coveralls.io/github/woodger/ooo-top-line?branch=master)
 
 Сервер предоставляет публичное API для обмена информацией о книгах. API позволяет получить список книг со следующими полями `title`, `date`, `author`, `description`, `image`.
 
