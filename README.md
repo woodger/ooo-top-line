@@ -49,12 +49,18 @@ http://127.0.0.1:3000/books
 
 ### Запуск сервера
 
-Для запуска `Http-сервер API Koa2 REST` потребуется пользователь `test:test` с правами к базе данных `example`.
+Для запуска `Http-сервер API Koa2 REST` потребуется пользователь СУБД [MariaDB](https://mariadb.com/). Параметры для подключения приложения к базе данных находятся в файле [config.json](https://github.com/woodger/ooo-top-line/blob/master/config.json).
 
 После клонирования репозитория перейдите в директорию проекта и в терминале ввидите:
 
 ```bash
-npm i && npm start
+npm i && npm run init
+```
+
+Старт сервера, по умолчанию прослушивает `localhost`, порт `3000`
+
+```bash
+npm start
 ```
 
 ### Получение списка книг
